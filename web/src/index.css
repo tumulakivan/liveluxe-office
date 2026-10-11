@@ -1,0 +1,211 @@
+@import "tailwindcss";
+
+/* ---------------------------------------------------------------------------
+   Office design tokens
+   ---------------------------------------------------------------------------
+   Light only. Warm off-white surfaces, and one accent: a gold-leaning orange.
+
+   The accent comes in two strengths, because one colour cannot do both jobs:
+   --primary is the bright gold used as a FILL (buttons, the active booking)
+   with dark text on it; --primary-strong is a darker bronze for gold TEXT and
+   icons on white, where the bright gold would fail contrast.
+
+   The admin rail stays dark warm charcoal, as in adVantage, so the admin
+   dashboard reads as a different room from the booking app.
+--------------------------------------------------------------------------- */
+
+:root {
+  --radius: 0.75rem;
+
+  --background: #faf8f5;
+  --foreground: #1c1915;
+  --card: #ffffff;
+  --card-foreground: #1c1915;
+  --popover: #ffffff;
+  --popover-foreground: #1c1915;
+
+  --primary: #d9a03a;
+  --primary-foreground: #2a1a02;
+  --primary-strong: #94600d;
+  --primary-soft: #fbf1df;
+
+  --secondary: #f2ede6;
+  --secondary-foreground: #1c1915;
+  --muted: #f4f0ea;
+  --muted-foreground: #6b645a;
+  --accent: #f6efe3;
+  --accent-foreground: #1c1915;
+  --destructive: #c62a2f;
+  --destructive-foreground: #ffffff;
+  --good: #2f7d32;
+  --warning: #a35d00;
+  --border: #ebe5dc;
+  --input: #ddd5c8;
+  --ring: #d9a03a;
+
+  --sidebar: #1f1c18;
+  --sidebar-foreground: #ddd6cb;
+  --sidebar-muted: #8f877b;
+  --sidebar-border: #2c2823;
+  --sidebar-accent: rgb(255 255 255 / 0.06);
+  --sidebar-active: rgb(227 169 72 / 0.15);
+  --sidebar-primary: #e3a948;
+}
+
+@theme inline {
+  --font-sans: "DM Sans Variable", "DM Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Fraunces Variable", "Fraunces", Georgia, serif;
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary-strong: var(--primary-strong);
+  --color-primary-soft: var(--primary-soft);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-good: var(--good);
+  --color-warning: var(--warning);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-muted: var(--sidebar-muted);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-active: var(--sidebar-active);
+  --color-sidebar-primary: var(--sidebar-primary);
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 10px);
+}
+
+@keyframes enter {
+  from {
+    opacity: 0;
+    transform: translateY(4px) scale(0.985);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes overlay-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes shimmer {
+  from {
+    background-position: 200% 0;
+  }
+  to {
+    background-position: -200% 0;
+  }
+}
+
+/* The bar under the label on the app <-> admin transition screen. */
+@keyframes progress {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(250%);
+  }
+}
+
+@keyframes sheet-up {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: none;
+  }
+}
+
+@keyframes fade-out {
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+@layer base {
+  * {
+    border-color: var(--border);
+  }
+
+  html {
+    color-scheme: light;
+  }
+
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  button:not(:disabled),
+  [role="button"]:not([aria-disabled="true"]),
+  [role="menuitem"]:not([data-disabled]),
+  select:not(:disabled),
+  label[for],
+  a[href] {
+    cursor: pointer;
+  }
+
+  button:disabled,
+  select:disabled,
+  [aria-disabled="true"],
+  [data-disabled] {
+    cursor: not-allowed;
+  }
+
+  input[type="date"]:not(:disabled) {
+    cursor: pointer;
+  }
+
+  .num {
+    font-variant-numeric: tabular-nums;
+  }
+
+  ::selection {
+    background-color: rgb(217 160 58 / 0.3);
+  }
+
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: var(--input) transparent;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
