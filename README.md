@@ -2,7 +2,7 @@
 
 Meeting room and boardroom bookings for Live Luxe AU. ("Office" is a working name.)
 
-- **Booking app** (`/`): a day view of Meeting Room 1, Meeting Room 2 and the Boardroom. Click a free time to book it, or click a booking to change or cancel it. **My bookings** lists what you have coming up.
+- **Booking app** (`/`): a day view of Meeting Room 1 and the Boardroom. Click a free time to book it, or click a booking to change or cancel it. **My bookings** lists what you have coming up.
 - **Admin dashboard** (`/admin`, admins only): an overview of room usage, **Staff** (add, edit, remove, reset passwords, handle reset requests) and **Bookings** (all bookings a week at a time).
 
 ## Running it
@@ -33,7 +33,7 @@ That serves everything on http://localhost:4100 (set `PORT` to change it).
 
 ## Accounts
 
-- On first run the database is created at `data/office.db` with the three rooms and the admin account `claudio.pistone`.
+- On first run the database is created at `data/office.db` with the two rooms and the admin account `claudio.pistone`.
 - New staff added by an admin start on the default password `liveluxeau` and have to choose their own when they first sign in.
 - **Forgot password:** there's no email, so the request appears on the admin dashboard. An admin resets the account to the default password, and the person chooses a new one at their next sign-in.
 - Staff change their password under **Account settings** in the top-right menu.

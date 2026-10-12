@@ -366,7 +366,7 @@ function PlaceholderColumn({ index }: { index: number }) {
  * The whole timeline before even the room list has arrived (the very first
  * paint). Shaped like the real thing so nothing jumps when it lands.
  */
-export function TimelineSkeleton({ rooms = 3, fill = true }: { rooms?: number; fill?: boolean }) {
+export function TimelineSkeleton({ rooms = 2, fill = true }: { rooms?: number; fill?: boolean }) {
   const hours = 12;
   return (
     <Loading

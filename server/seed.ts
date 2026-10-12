@@ -2,7 +2,7 @@ import { hashPassword } from "./auth.ts";
 import { db } from "./db.ts";
 
 /**
- * First-run data: the three rooms, and the owner's admin account. Both only
+ * First-run data: the two rooms, and the owner's admin account. Both only
  * happen on an empty database, so restarting never resurrects a removed
  * account or undoes a renamed room.
  */
@@ -11,9 +11,8 @@ export async function seed() {
   if (rooms === 0) {
     const insert = db.prepare("INSERT INTO rooms (name, kind, sort) VALUES (?, ?, ?)");
     insert.run("Meeting Room 1", "meeting", 1);
-    insert.run("Meeting Room 2", "meeting", 2);
-    insert.run("Boardroom", "boardroom", 3);
-    console.log("[seed] created 3 rooms");
+    insert.run("Boardroom", "boardroom", 2);
+    console.log("[seed] created 2 rooms");
   }
 
   const { users } = db.prepare("SELECT COUNT(*) AS users FROM users").get() as { users: number };

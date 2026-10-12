@@ -65,6 +65,8 @@ const MIGRATIONS = [
   // Demo bookings are flagged too: the seeder also books for real admins, and
   // those must go on a clear even though the admin account stays.
   `ALTER TABLE bookings ADD COLUMN demo INTEGER NOT NULL DEFAULT 0;`,
+  // The office lost Meeting Room 2. Its bookings go with it, by cascade.
+  `DELETE FROM rooms WHERE name = 'Meeting Room 2';`,
 ];
 
 function migrate() {
